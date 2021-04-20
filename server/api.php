@@ -22,21 +22,23 @@
 	// CONFIG
 
 	//database config
-	$host = '127.0.0.1';
-    $dbname = 'helioscrackapi';
-    $table = 'Helios_Crack_Api';
-    $username = 'helioscrackapi';
-    $password = '5HLEKP6Wr5PP6RYy';
+	$host = "127.0.0.1";
+    $dbname = "";
+    $table = "";
+    $db_username = "root";
+    $db_password = "";
+
+    $access_mode = $_GET['username']; // if you want to acess to the user with the email replace username with email
+    								  // if you want to access with the username and the email in the same time you must add: || $_GET['email'] after ] 
 
     $mode_email = "email"; // Row of email (no hash)
     $mode_username = "username"; // Row of username (no hash)
-    $table_last_ip = "last-ip";
 
     //Connection
     $dsn = "mysql:host=$host;dbname=$dbname";
     try{
-        $pdo = new PDO($dsn, $username, $password);
-        // echo "Conection Ok, La base de donnée " . $dbname . " est en ligne avec l'utilisateur " . $username . " sur le serveur: " . $host . " !";
+        $pdo = new PDO($dsn, $db_username, $db_password);
+        // echo "Conection Ok, La base de donnée " . $dbname . " est en ligne avec l'utilisateur " . $db_username . " sur le serveur: " . $host . " !";
     }catch (PDOException $e){
         echo $e->getMessage();
     }
@@ -46,15 +48,15 @@
 
 	header("Content-Type: application/json");
 
-	if (!isset($_GET['username']) || empty($_GET['username']))
+	if (!isset($access_mode))
 	{
 	    http_response_code(400);
 	    echo json_encode([
 	        'status' => 'error',
-	        'error' => 'username is needed',
+	        'error' => 'email or username is needed',
 	    ]);
 	    exit;
-	}
+	} 
 
 	if (empty($_GET['password']))
 	{
@@ -77,7 +79,7 @@
 	$password = $_GET['password']; 
 
 
-	$api = $pdo->prepare("SELECT * FROM `$table` WHERE '$mode' = '$user'");
+	$api = $pdo->prepare("SELECT * FROM `$table` WHERE " . "$mode" . " = '$user'");
 	$api->execute();
 
 	if (false === $api)
@@ -112,7 +114,7 @@
 	    ]);
 	    exit;
 	}
-	$stmt = $pdo->prepare("UPDATE `$table` SET `$table_last_ip` = ? WHERE '$mode' = '$user'");
+	$stmt = $pdo->prepare("UPDATE `$table` SET `last_ip` = ? WHERE " . "$mode" . " = '$user'");
 	$stmt->execute([$_SERVER['REMOTE_ADDR']]);
 
 
