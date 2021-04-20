@@ -23,14 +23,14 @@
 
 	//database config
 	$host = '127.0.0.1';
-    $dbname = '';
-    $table = '';
-    $username = 'root';
-    $password = '';
+    $dbname = 'helioscrackapi';
+    $table = 'Helios_Crack_Api';
+    $username = 'helioscrackapi';
+    $password = '5HLEKP6Wr5PP6RYy';
 
     $mode_email = "email"; // Row of email (no hash)
     $mode_username = "username"; // Row of username (no hash)
-    $table_last_ip = "last-ip"
+    $table_last_ip = "last-ip";
 
     //Connection
     $dsn = "mysql:host=$host;dbname=$dbname";
