@@ -8,6 +8,9 @@
 
 <br>
 <br>
+<p>Pour toute installation, merci de mp Guillaume#1000 sur discord svp</p>
+<br>
+<br>
 
 ---
 
