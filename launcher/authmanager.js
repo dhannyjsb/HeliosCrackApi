@@ -8,7 +8,7 @@ exports.addAccount = async function(username, password){
     let hash = require("crypto").createHash("sha512");
 
     //modify with your url of api
-    let baseurl = 'https://www.utopicube.fr/api/auth/';
+    let base = 'https://www.utopicube.fr/api/auth/';
     
     hash.update(password);
     password = hash.digest("hex");
@@ -18,16 +18,16 @@ exports.addAccount = async function(username, password){
     let skin = null;
 
     if (username.startsWith('@')) {
-      let url = `${baseurl}?email=${username}&password=${password}`
+      let url = base + `?email=${username}&password=${password}`
     } else {
-      let url = `${baseurl}?pseudo=${username}&password=${password}`
+      let url = base + `?pseudo=${username}&password=${password}`
     }
    await fetch(url)
     .then((response) => response.json())
     .then((response) => {
         if ("ok" != response.status) {
           throw new Error(
-            "Le pseudo ou le mot de passe que vous avez entré est incorrect. Veuillez réessayer."
+            "User or password not correspond, please retry"
           );
         }
 
