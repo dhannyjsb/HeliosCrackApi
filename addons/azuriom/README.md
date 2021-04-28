@@ -5,14 +5,12 @@
 
 <br>
 <br>
-<h3>Pour installer l'addon skin_api, merci de modifier les fichiers:</h3>
+<h3>Pour installer l'addon azuriom, merci de modifier les fichiers:</h3>
 <p>lib/skins.php  :  Modifiez le https://myserver.com/api/skins/ par l'url de votre emplacement de skin en png</p>
 <br>
-<p>dans la base de donnée sql du launcher, vous pouvez mettre le lien du skin de base</p>
 <br>
 <h3>Utilisation:</h3>
-<p>https://your_website.com/api/lib/skins.php?user=steve&mode=head</p>
-<p>https://your_website.com/api/lib/skins.php?user=steve&mode=skin</p>
+<p>le système va faire que les gens devrons se connecter avec le compte du launcher et il y a possibilité de se lier avec son compte avec son compte mojang ou a son serveur iggdrasyl</p>
 <br>
 <br>
 
